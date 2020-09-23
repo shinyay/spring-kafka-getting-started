@@ -3,8 +3,6 @@ FROM openjdk:8u212-jre-alpine
 ARG kafka_version=2.6.0
 ARG scala_version=2.13
 
-MAINTAINER wurstmeister
-
 RUN apk add --update unzip wget curl docker jq coreutils
 
 ENV KAFKA_VERSION=$kafka_version SCALA_VERSION=$scala_version
