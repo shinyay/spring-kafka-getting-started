@@ -5,6 +5,9 @@ import org.apache.kafka.common.serialization.StringDeserializer
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.kafka.core.ConsumerFactory
+import org.springframework.kafka.core.DefaultKafkaConsumerFactory
+
 
 @Configuration
 class KafkaConsumerConfig {
@@ -18,5 +21,10 @@ class KafkaConsumerConfig {
         props[ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG] = bootstrapServers!!
         props[ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG] = StringDeserializer::class.java
         return props
+    }
+
+    @Bean
+    fun consumerFactory(): ConsumerFactory<String?, String?>? {
+        return DefaultKafkaConsumerFactory<String?, String?>(consumerConfigs()!!)
     }
 }
